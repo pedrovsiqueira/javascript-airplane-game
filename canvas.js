@@ -51,9 +51,27 @@ class Airplane {
         this.speedY = 0;
     }
 
-    newPos() {
-        this.x += this.speedX
-        this.y += this.speedY
+    newPos() { //limitar esquerda
+        if(airplane1.x >= 0){
+            this.x += this.speedX
+        } else {
+            this.x = 0
+        }
+        if(airplane1.x <= width - 100){
+            this.x += this.speedX
+        } else {
+            this.x = (width - 100)
+        }
+        if(airplane1.y >= 0){
+            this.y += this.speedY
+        } else {
+            this.y = 0
+        }
+        if(airplane1.y <= height - 77){
+            this.y += this.speedY
+        } else {
+            this.y = (height - 77)
+        }
     }
 
     drawPlane() {
@@ -84,7 +102,7 @@ class Airplane {
         return this.y;
     }
     bottom() {
-        return this.y + this.height;
+        return this.y + this.height -10;
     }
 
     crashWith( obstacle ) {
@@ -133,7 +151,7 @@ class Obstacle {
         return this.y;
     }
     bottom() {
-        return this.y + this.height;
+        return this.y + this.height - 8;
     }
 }
 
@@ -177,40 +195,22 @@ var backgroundImage = {
 document.onkeydown = function ( e ) {
     switch ( e.keyCode ) {
         case 38:
-            if ( airplane1.y > 5 ) {
                 airplane1.speedY += -.8
                 console.log( 'up', airplane1 );
-            } else {
-                console.log( 'limite topo' )
-            }
             break;
         case 40:
-            if ( airplane1.y < 719 ) {
-
                 airplane1.speedY += .8
                 console.log( airplane1.speedY )
                 console.log( 'down', airplane1 );
-            } else {
-                console.log( `limite baixo` )
-            }
             break;
         case 37:
-            if ( airplane1.x > 5 ) {
                 console.log( `Position X: ` + airplane1.x )
                 airplane1.speedX += -.8
-                console.log( airplane1.speedX )
                 console.log( 'left', airplane1 );
-            } else {
-                console.log( `limite esquerda` )
-            }
             break;
         case 39:
-            if ( airplane1.x < 790 ) {
                 airplane1.speedX += .8
                 console.log( 'right', airplane1 );
-            } else {
-                console.log( `limite direita` )
-            }
             break;
     }
 }
@@ -236,4 +236,4 @@ function updateCanvas() {
     checkGameOver();
 }
 
-let airplane1 = new Airplane( 30, 250, 100, 80 )
+let airplane1 = new Airplane( 0, width/2, 100, 80 )
