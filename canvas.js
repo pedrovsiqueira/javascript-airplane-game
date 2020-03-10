@@ -14,31 +14,31 @@ var contadorObstacle = 0
 //load images
 //background
 var img = new Image();
-img.src = "./images/bg.png";
+img.src = "/images/bg.png";
 
 //airplane image
 var airplane = new Image()
-airplane.src = "./images/Plane/fly1.png"
+airplane.src = "/images/Plane/fly1.png"
 
 var airplane2 = new Image()
-airplane2.src = './images/Plane/fly2.png'
+airplane2.src = '/images/Plane/fly2.png'
 
 //obstacle image
 var obstacle = new Image()
-obstacle.src = "./images/1.png"
+obstacle.src = "/images/1.png"
 
 var obstacle2 = new Image()
-obstacle2.src = './images/4.png'
+obstacle2.src = '/images/4.png'
 
 var airplaneDead = new Image()
-airplaneDead.src = "./images/Plane/Dead (1).png"
+airplaneDead.src = "/images/Plane/Dead (1).png"
 
 var heart = new Image()
-heart.src = './images/heart.png'
+heart.src = '/images/heart.png'
 
 //load audio
 var crashSound = new Audio()
-crashSound.src = './Sounds/crash.wav'
+crashSound.src = '/Sounds/crash.wav'
 
 window.onload = function () {
     document.getElementById( "start-button" ).onclick = function () {
