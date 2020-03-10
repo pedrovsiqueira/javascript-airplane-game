@@ -5,6 +5,8 @@ height = this.canvas.height = 800;
 let id = null
 let frames = 0
 let myObstacles = []
+let lives = 3;
+
 
 //load images
 //background
@@ -22,7 +24,12 @@ obstacle.src = "./images/1.png"
 var airplaneDead = new Image()
 airplaneDead.src = "./images/Plane/Dead (1).png"
 
-//airplane variables
+var heart = new Image()
+heart.src = './images/heart.png'
+
+//load audio
+var crashSound = new Audio()
+crashSound.src = './Sounds/crash.wav'
 
 window.onload = function () {
     document.getElementById( "start-button" ).onclick = function () {
@@ -36,9 +43,11 @@ function startGame() {
 
 function stopGame() {
     console.log( `game over` )
-    // ctx.clearRect(airplane1.x, airplane1.y, 100, 80);
-    airplane1.updateDeadPlane()
     cancelAnimationFrame( id )
+    backgroundImage.draw();
+    createObstacles()
+    moveObstacle()
+    airplane1.updateDeadPlane()
 }
 
 class Airplane {
@@ -51,26 +60,27 @@ class Airplane {
         this.speedY = 0;
     }
 
-    newPos() { //limitar esquerda
-        if(airplane1.x >= 0){
+    newPos() {
+        //limitar esquerda
+        if ( airplane1.x >= 0 ) {
             this.x += this.speedX
         } else {
             this.x = 0
         }
-        if(airplane1.x <= width - 100){
+        if ( airplane1.x <= width - 100 ) {
             this.x += this.speedX
         } else {
-            this.x = (width - 100)
+            this.x = ( width - 100 )
         }
-        if(airplane1.y >= 0){
+        if ( airplane1.y >= 0 ) {
             this.y += this.speedY
         } else {
             this.y = 0
         }
-        if(airplane1.y <= height - 77){
+        if ( airplane1.y <= height - 77 ) {
             this.y += this.speedY
         } else {
-            this.y = (height - 77)
+            this.y = ( height - 77 )
         }
     }
 
@@ -82,27 +92,34 @@ class Airplane {
         ctx.drawImage( airplaneDead, this.x, this.y, this.width, this.height )
     }
 
+    drawHeart() {
+        let xHeart = 5
+        let yHeart = 5
+        for ( let i = 0; i < lives; i++ ) {
+            ctx.drawImage( heart, xHeart, yHeart, 30, 30 )
+            xHeart += 35
+        }
+    }
+
     updatePlane() {
-        // ctx.clearRect( 0, 0, 1500, 1700 );
         this.drawPlane()
     }
 
     updateDeadPlane() {
         this.drawDeadPlane()
-
     }
 
     left() {
         return this.x;
     }
     right() {
-        return this.x + this.width -4;
+        return this.x + this.width - 4;
     }
     top() {
         return this.y;
     }
     bottom() {
-        return this.y + this.height -11;
+        return this.y + this.height - 11;
     }
 
     crashWith( obstacle ) {
@@ -116,13 +133,17 @@ class Airplane {
 }
 
 function checkGameOver() {
-    var crashed = myObstacles.some( function ( obstacle ) {
-        return airplane1.crashWith( obstacle );
-    } );
 
-    if ( crashed ) {
-        stopGame();
-    }
+    myObstacles.forEach( function (element, index) {
+        if(airplane1.crashWith(element) && lives === 1){
+            crashSound.play()
+            stopGame()
+        } else if(airplane1.crashWith(element)){
+            console.log(`colidiu`)
+            myObstacles.splice(index, 1)
+            lives--
+        }
+    })
 }
 
 class Obstacle {
@@ -195,22 +216,22 @@ var backgroundImage = {
 document.onkeydown = function ( e ) {
     switch ( e.keyCode ) {
         case 38:
-                airplane1.speedY += -.8
-                console.log( 'up', airplane1 );
+            airplane1.speedY += -1
+            console.log( 'up', airplane1 );
             break;
         case 40:
-                airplane1.speedY += .8
-                console.log( airplane1.speedY )
-                console.log( 'down', airplane1 );
+            airplane1.speedY += 1
+            console.log( airplane1.speedY )
+            console.log( 'down', airplane1 );
             break;
         case 37:
-                console.log( `Position X: ` + airplane1.x )
-                airplane1.speedX += -.8
-                console.log( 'left', airplane1 );
+            console.log( `Position X: ` + airplane1.x )
+            airplane1.speedX += -1
+            console.log( 'left', airplane1 );
             break;
         case 39:
-                airplane1.speedX += .8
-                console.log( 'right', airplane1 );
+            airplane1.speedX += 1
+            console.log( 'right', airplane1 );
             break;
     }
 }
@@ -225,15 +246,17 @@ function updateCanvas() {
     backgroundImage.move();
     backgroundImage.draw();
     //airplane
+    airplane1.drawHeart()
     airplane1.newPos()
     airplane1.updatePlane()
-    
+
     //object
     createObstacles()
     moveObstacle()
+
 
     id = requestAnimationFrame( updateCanvas );
     checkGameOver();
 }
 
-let airplane1 = new Airplane( 0, width/2, 100, 80 )
+let airplane1 = new Airplane( 0, width / 2, 100, 80 )
