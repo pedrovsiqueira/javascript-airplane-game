@@ -10,7 +10,6 @@ var points = 0
 var contador = 0
 var contadorObstacle = 0
 
-
 //load images
 //background
 var img = new Image();
