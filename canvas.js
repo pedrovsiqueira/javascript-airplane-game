@@ -9,7 +9,7 @@ let myObstacles = []
 //load images
 //background
 var img = new Image();
-img.src = "./images/BG.png";
+img.src = "./images/bg.png";
 
 //airplane image
 var airplane = new Image()
@@ -17,7 +17,10 @@ airplane.src = "./images/Plane/fly1.png"
 
 //obstacle image
 var obstacle = new Image()
-obstacle.src = "./images/fly1.png"
+obstacle.src = "./images/1.png"
+
+var airplaneDead = new Image()
+airplaneDead.src = "./images/Plane/Dead (1).png"
 
 //airplane variables
 
@@ -32,6 +35,9 @@ function startGame() {
 }
 
 function stopGame() {
+    console.log( `game over` )
+    // ctx.clearRect(airplane1.x, airplane1.y, 100, 80);
+    airplane1.updateDeadPlane()
     cancelAnimationFrame( id )
 }
 
@@ -54,9 +60,18 @@ class Airplane {
         ctx.drawImage( airplane, this.x, this.y, this.width, this.height )
     }
 
+    drawDeadPlane() {
+        ctx.drawImage( airplaneDead, this.x, this.y, this.width, this.height )
+    }
+
     updatePlane() {
         // ctx.clearRect( 0, 0, 1500, 1700 );
         this.drawPlane()
+    }
+
+    updateDeadPlane() {
+        this.drawDeadPlane()
+
     }
 
     left() {
@@ -83,14 +98,14 @@ class Airplane {
 }
 
 function checkGameOver() {
-    var crashed = myObstacles.some(function(obstacle) {
-      return airplane1.crashWith(obstacle);
-    });
-  
-    if (crashed) {
-      stopGame();
+    var crashed = myObstacles.some( function ( obstacle ) {
+        return airplane1.crashWith( obstacle );
+    } );
+
+    if ( crashed ) {
+        stopGame();
     }
-  }
+}
 
 class Obstacle {
     constructor( y ) {
@@ -162,22 +177,40 @@ var backgroundImage = {
 document.onkeydown = function ( e ) {
     switch ( e.keyCode ) {
         case 38:
-            airplane1.speedY += -.8
-            console.log( 'up', airplane1 );
+            if ( airplane1.y > 5 ) {
+                airplane1.speedY += -.8
+                console.log( 'up', airplane1 );
+            } else {
+                console.log( 'limite topo' )
+            }
             break;
         case 40:
-            airplane1.speedY += .8
-            console.log( airplane1.speedY )
-            console.log( 'down', airplane1 );
+            if ( airplane1.y < 719 ) {
+
+                airplane1.speedY += .8
+                console.log( airplane1.speedY )
+                console.log( 'down', airplane1 );
+            } else {
+                console.log( `limite baixo` )
+            }
             break;
         case 37:
-            airplane1.speedX += -.8
-            console.log( airplane1.speedX )
-            console.log( 'left', airplane1 );
+            if ( airplane1.x > 5 ) {
+                console.log( `Position X: ` + airplane1.x )
+                airplane1.speedX += -.8
+                console.log( airplane1.speedX )
+                console.log( 'left', airplane1 );
+            } else {
+                console.log( `limite esquerda` )
+            }
             break;
         case 39:
-            airplane1.speedX += .8
-            console.log( 'right', airplane1 );
+            if ( airplane1.x < 790 ) {
+                airplane1.speedX += .8
+                console.log( 'right', airplane1 );
+            } else {
+                console.log( `limite direita` )
+            }
             break;
     }
 }
@@ -194,10 +227,11 @@ function updateCanvas() {
     //airplane
     airplane1.newPos()
     airplane1.updatePlane()
+    
     //object
     createObstacles()
     moveObstacle()
-    
+
     id = requestAnimationFrame( updateCanvas );
     checkGameOver();
 }
