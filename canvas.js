@@ -6,6 +6,9 @@ let id = null
 let frames = 0
 let myObstacles = []
 let lives = 3;
+var points = 0
+var contador = 0
+var contadorObstacle = 0
 
 
 //load images
@@ -17,9 +20,15 @@ img.src = "./images/bg.png";
 var airplane = new Image()
 airplane.src = "./images/Plane/fly1.png"
 
+var airplane2 = new Image()
+airplane2.src = './images/Plane/fly2.png'
+
 //obstacle image
 var obstacle = new Image()
 obstacle.src = "./images/1.png"
+
+var obstacle2 = new Image()
+obstacle2.src = './images/4.png'
 
 var airplaneDead = new Image()
 airplaneDead.src = "./images/Plane/Dead (1).png"
@@ -47,7 +56,15 @@ function stopGame() {
     backgroundImage.draw();
     createObstacles()
     moveObstacle()
+    score()
     airplane1.updateDeadPlane()
+}
+
+function score(){
+    var points = Math.floor(frames / 5);
+    ctx.font = "32px arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("Score: " + points, 112, 32);
 }
 
 class Airplane {
@@ -85,7 +102,16 @@ class Airplane {
     }
 
     drawPlane() {
-        ctx.drawImage( airplane, this.x, this.y, this.width, this.height )
+        if(contador == 10){
+            contador = 0
+        }
+        if(contador < 5 ){
+            ctx.drawImage( airplane, this.x, this.y, this.width, this.height )
+            contador++
+        } else if(contador < 10) {
+            ctx.drawImage( airplane2, this.x, this.y, this.width, this.height)
+            contador++
+        }
     }
 
     drawDeadPlane() {
@@ -155,7 +181,19 @@ class Obstacle {
     }
 
     drawObstacle() {
-        ctx.drawImage( obstacle, this.x, this.y, this.width, this.height )
+        if(contadorObstacle == 51){
+            contadorObstacle = 0
+        }
+        if(contadorObstacle < 30 ){
+            ctx.drawImage( obstacle, this.x, this.y, this.width, this.height )
+            contadorObstacle++
+            console.log(contadorObstacle)
+        } else if(contador < 51) {
+            ctx.drawImage( obstacle2, this.x, this.y, this.width, this.height)
+            contadorObstacle++
+            console.log(contadorObstacle)
+
+        }
     }
 
     updateObstacle() {
@@ -254,6 +292,8 @@ function updateCanvas() {
     createObstacles()
     moveObstacle()
 
+
+    score()
 
     id = requestAnimationFrame( updateCanvas );
     checkGameOver();
