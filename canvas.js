@@ -297,15 +297,17 @@ document.onkeyup = function ( e ) {
 function updateCanvas() {
     //background
     // backgroundImage.move();
-    backgroundImage.draw();
+    // backgroundImage.draw();
     //airplane
-    airplane1.drawHeart()
     airplane1.newPos()
+    ctx.clearRect(0,0,900,938);
+    airplane1.drawHeart()
     airplane1.updatePlane()
 
     //object
     createObstacles()
     moveObstacle()
+    
 
     score()
 
