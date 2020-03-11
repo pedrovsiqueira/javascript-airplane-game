@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+    <div class="title">
+        <h1>Escape<br> the<br> <span>Bees</span></h1>
+        <div class="instructions"></div>
+        <ul>
+            <li>↑ Move UP</li>
+            <li>→ Move RIGHT</li>
+            <li>↓ Move DOWN</li>
+            <li>← Move LEFT</li>
+        </ul>
+        <div class="instructions-container">
+            <button id="start-button">Start Game</button>
+        </div>
+    </div>
     <!-- create a canvas element -->
-    <button id="start-button">Start Game</button>
-    <canvas id="canvas"></canvas>
+    <div class="container">
+        <canvas id="canvas"></canvas>
+    </div>
     <script src="canvas.js"></script>
 </body>
+
 </html>

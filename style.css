@@ -1,26 +1,92 @@
-body{
-    background-color: #333;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
+
+* {
     margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+body {
+    /* background-color: #333; */
+    /* background: linear-gradient(to top, #00b2df 0%, #0060b8 100%); */
+    color: #fff;
+    margin: 0;
+    width: 99vw;
+    /* height: 100vh; */
+    background-image: url(./images/background.png);
+    display: flex;
+    font-family: 'Rubik Mono One', sans-serif;
+    overflow-x: hidden;
+
 }
 
 body button {
-    font-size: 20px;
-    background-color: black;
+    font-size: 35px;
+    background-color: transparent;
     color: #fff;
     padding: 10px 20px;
-    border: 0;
+    border: 1px solid white;
     box-shadow: 0;
     border-radius: 5px;
     margin-top: 20px;
     margin-bottom: 20px;
-  }
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
 
-canvas {
-    background-image: url(./images/background.png);
-    border-radius: 5px;
+button:hover{
+ color: #0060b8;
+ /* border: 2px solid #0060b8; */
+ background-color: white;
+ color: #00ABDC;
+ /* font-weight: bold;    */
+ transition: all 0.3s linear;
+}
+
+h1 {
+    font-size: 100px;
+}
+
+h2 {
+    font-size: 50px;
+    margin-bottom: 70px;
+}
+
+ul {
+    list-style: none;
+    font-size: 20px;
+    border-radius: 10px;
+    /* background-color: #00ABDC; */
+    padding: 3px;
+    margin-top:10px;
+    width: 30%;
+}
+
+
+.container {
+    width: 50vw;
+    height: 100vh;
+    /* background-image: url('./images/background.png'); */
+    /* background-color:white; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    width: 50vw;
+    height: 100vh;
+    padding: 50px 0px 50px 100px;
+}
+
+
+.instructions-container {
+    background-color: transparent;
+    width: 47.2vw;
+    padding: 100px;
+    left: 0;
+    bottom:0;
+    position: fixed;
 }

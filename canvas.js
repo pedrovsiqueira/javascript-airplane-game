@@ -1,7 +1,7 @@
 const canvas = document.getElementById( 'canvas' )
 const ctx = canvas.getContext( '2d' )
 width = this.canvas.width = 900;
-height = this.canvas.height = 800;
+height = this.canvas.height = 940;
 let id = null
 let frames = 0
 let myObstacles = []
@@ -78,7 +78,7 @@ function score(){
     var points = Math.floor(frames / 5);
     ctx.font = "32px arial";
     ctx.fillStyle = "white";
-    ctx.fillText("Score: " + points, 112, 32);
+    ctx.fillText("Score: " + points, width-230, 32);
 }
 
 class Airplane {
@@ -292,7 +292,7 @@ document.onkeyup = function ( e ) {
 
 function updateCanvas() {
     //background
-    backgroundImage.move();
+    // backgroundImage.move();
     backgroundImage.draw();
     //airplane
     airplane1.drawHeart()
@@ -302,7 +302,6 @@ function updateCanvas() {
     //object
     createObstacles()
     moveObstacle()
-
 
     score()
 
