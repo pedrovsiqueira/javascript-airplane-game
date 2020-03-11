@@ -89,4 +89,6 @@ ul {
     left: 0;
     bottom:0;
     position: fixed;
+    display: flex;
+    justify-content: space-around;
 }

@@ -1,7 +1,7 @@
 const canvas = document.getElementById( 'canvas' )
 const ctx = canvas.getContext( '2d' )
 width = this.canvas.width = 900;
-height = this.canvas.height = 940;
+height = this.canvas.height = 938;
 let id = null
 let frames = 0
 let myObstacles = []
@@ -51,6 +51,11 @@ window.onload = function () {
         if(!gameStarted)
         startGame()
     };
+
+    document.getElementById( "restart-button" ).onclick = function () {
+        if(gameStarted)
+        restartGame()
+    };
 }
 
 function startGame() {
@@ -93,25 +98,25 @@ class Airplane {
 
     newPos() {
         //limitar esquerda
-        if ( airplane1.x >= 0 ) {
+        if ( airplane1.x >= 2 ) {
             this.x += this.speedX
         } else {
-            this.x = 0
+            this.x = 2
         }
-        if ( airplane1.x <= width - 100 ) {
+        if ( airplane1.x <= width - 113 ) {
             this.x += this.speedX
         } else {
-            this.x = ( width - 100 )
+            this.x = ( width - 113 )
         }
-        if ( airplane1.y >= 0 ) {
+        if ( airplane1.y >= 40 ) {
             this.y += this.speedY
         } else {
-            this.y = 0
+            this.y = 40
         }
-        if ( airplane1.y <= height - 77 ) {
+        if ( airplane1.y <= height - 80 ) {
             this.y += this.speedY
         } else {
-            this.y = ( height - 77 )
+            this.y = ( height - 80 )
         }
     }
 
@@ -240,7 +245,6 @@ function moveObstacle() {
     } )
 }
 
-
 var backgroundImage = {
     img: img,
     x: 0,
@@ -265,21 +269,21 @@ var backgroundImage = {
 document.onkeydown = function ( e ) {
     switch ( e.keyCode ) {
         case 38:
-            airplane1.speedY += -1
+            airplane1.speedY = -2
             console.log( 'up', airplane1 );
             break;
         case 40:
-            airplane1.speedY += 1
+            airplane1.speedY = 2
             console.log( airplane1.speedY )
             console.log( 'down', airplane1 );
             break;
         case 37:
             console.log( `Position X: ` + airplane1.x )
-            airplane1.speedX += -1
+            airplane1.speedX = -2
             console.log( 'left', airplane1 );
             break;
         case 39:
-            airplane1.speedX += 1
+            airplane1.speedX = 2
             console.log( 'right', airplane1 );
             break;
     }
