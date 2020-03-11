@@ -13,7 +13,7 @@ var contadorObstacle = 0
 //load images
 //background
 var img = new Image();
-img.src = "./images/bg.png";
+img.src = "./images/background.png";
 
 //airplane image
 var airplane = new Image()
