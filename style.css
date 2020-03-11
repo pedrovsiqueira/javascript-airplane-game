@@ -21,7 +21,6 @@ body button {
   }
 
 canvas {
-    background: #f0f0f0;
+    background-image: url(./images/background.png);
     border-radius: 5px;
-
 }
