@@ -36,6 +36,12 @@ airplaneDead.src = "./images/Plane/Dead (1).png"
 var heart = new Image()
 heart.src = './images/heart.png'
 
+var arrows = new Image()
+arrows.src = './images/arrows.png'
+
+var gameOver = new Image()
+gameOver.src = './images/gameover.png'
+
 //load audio
 var crashSound = new Audio()
 crashSound.src = './Sounds/crash.wav'
@@ -64,7 +70,8 @@ function stopGame() {
     moveObstacle()
     score()
     airplane1.updateDeadPlane()
-    setTimeout(restartGame, 3000)
+    ctx.drawImage(gameOver, 300, 60, 300, 300)
+    setTimeout(restartGame, 4000)
 }
 
 function score(){
@@ -194,17 +201,14 @@ class Obstacle {
         if(contadorObstacle < 30 ){
             ctx.drawImage( obstacle, this.x, this.y, this.width, this.height )
             contadorObstacle++
-            console.log(contadorObstacle)
         } else if(contador < 51) {
             ctx.drawImage( obstacle2, this.x, this.y, this.width, this.height)
             contadorObstacle++
-            console.log(contadorObstacle)
-
         }
     }
 
     updateObstacle() {
-        this.x -= 2
+        this.x -= 5
     }
 
     left() {
@@ -223,7 +227,7 @@ class Obstacle {
 
 function createObstacles() {
     frames += 1
-    if ( frames % 120 === 0 ) {
+    if ( frames % 50 === 0 ) {
         console.log( `Objeto Criado` )
         return myObstacles.push( new Obstacle( Math.floor( Math.random() * ( height - 50 ) ) ) )
     }
