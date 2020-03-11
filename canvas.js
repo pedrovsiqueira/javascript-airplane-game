@@ -310,4 +310,4 @@ function updateCanvas() {
     checkGameOver();
 }
 
-let airplane1 = new Airplane( 0, width / 2, 100, 80 )
+let airplane1 = new Airplane( 0, height/2, 100, 80 )
