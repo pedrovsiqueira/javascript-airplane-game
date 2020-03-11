@@ -9,6 +9,7 @@ let lives = 3;
 var points = 0
 var contador = 0
 var contadorObstacle = 0
+let gameStarted = false
 
 //load images
 //background
@@ -41,12 +42,18 @@ crashSound.src = './Sounds/crash.wav'
 
 window.onload = function () {
     document.getElementById( "start-button" ).onclick = function () {
+        if(!gameStarted)
         startGame()
     };
 }
 
 function startGame() {
+    gameStarted = true
     requestAnimationFrame( updateCanvas )
+}
+
+function restartGame(){
+    location.reload();
 }
 
 function stopGame() {
@@ -57,6 +64,7 @@ function stopGame() {
     moveObstacle()
     score()
     airplane1.updateDeadPlane()
+    setTimeout(restartGame, 3000)
 }
 
 function score(){
