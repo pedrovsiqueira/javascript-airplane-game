@@ -84,14 +84,13 @@ canvas{
     /* border: 2px solid white; */
 }
 
-
 .instructions-container {
     background-color: transparent;
     width: 47.2vw;
     padding: 100px;
     left: 0;
     bottom:0;
+    position: fixed;
     display: flex;
     justify-content: space-around;
-
 }
