@@ -71,8 +71,6 @@ canvas{
 .container {
     width: 50vw;
     height: 100vh;
-    /* background-image: url('./images/background.png'); */
-    /* background-color:white; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -82,7 +80,7 @@ canvas{
 .title {
     width: 50vw;
     height: 100vh;
-    /* padding: 0px 0px 50px 100px; */
+    padding: 50px 0px 50px 100px;
     /* border: 2px solid white; */
 }
 
@@ -93,7 +91,7 @@ canvas{
     padding: 100px;
     left: 0;
     bottom:0;
-    position: fixed;
     display: flex;
     justify-content: space-around;
+
 }

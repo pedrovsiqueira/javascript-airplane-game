@@ -70,10 +70,13 @@ function restartGame(){
 function stopGame() {
     console.log( `game over` )
     cancelAnimationFrame( id )
-    backgroundImage.draw();
+    // backgroundImage.draw();
+    ctx.clearRect(0,0,900,938);
+
     createObstacles()
     moveObstacle()
     score()
+
     airplane1.updateDeadPlane()
     ctx.drawImage(gameOver, 300, 60, 300, 300)
     setTimeout(restartGame, 4000)
