@@ -60,13 +60,13 @@ crashSound.src = './Sounds/crash.wav'
 
 window.onload = function () {
     document.getElementById( "start-button" ).onclick = function () {
-        if(!gameStarted)
-        startGame()
+        if ( !gameStarted )
+            startGame()
     };
 
     document.getElementById( "restart-button" ).onclick = function () {
-        if(gameStarted)
-        restartGame()
+        if ( gameStarted )
+            restartGame()
     };
 }
 
@@ -75,7 +75,7 @@ function startGame() {
     requestAnimationFrame( updateCanvas )
 }
 
-function restartGame(){
+function restartGame() {
     location.reload();
 }
 
@@ -83,20 +83,20 @@ function stopGame() {
     console.log( `game over` )
     cancelAnimationFrame( id )
     // backgroundImage.draw();
-    ctx.clearRect(0,0,900,938);
+    ctx.clearRect( 0, 0, 900, 938 );
     createObstacles()
     moveObstacle()
     score()
     airplane1.updateDeadPlane()
-    ctx.drawImage(gameOver, 300, 60, 300, 300)
-    setTimeout(restartGame, 4000)
+    ctx.drawImage( gameOver, 300, 60, 300, 300 )
+    setTimeout( restartGame, 4000 )
 }
 
-function score(){
-    var points = Math.floor(frames / 5);
+function score() {
+    var points = Math.floor( frames / 5 );
     ctx.font = "32px arial";
     ctx.fillStyle = "white";
-    ctx.fillText("Score: " + points, width-230, 32);
+    ctx.fillText( "Score: " + points, width - 230, 32 );
 }
 
 class Airplane {
@@ -134,14 +134,14 @@ class Airplane {
     }
 
     drawPlane() {
-        if(contador == 10){
+        if ( contador == 10 ) {
             contador = 0
         }
-        if(contador < 5 ){
+        if ( contador < 5 ) {
             ctx.drawImage( airplane, this.x, this.y, this.width, this.height )
             contador++
-        } else if(contador < 10) {
-            ctx.drawImage( airplane2, this.x, this.y, this.width, this.height)
+        } else if ( contador < 10 ) {
+            ctx.drawImage( airplane2, this.x, this.y, this.width, this.height )
             contador++
         }
     }
@@ -192,16 +192,16 @@ class Airplane {
 
 function checkGameOver() {
 
-    myObstacles.forEach( function (element, index) {
-        if(airplane1.crashWith(element) && lives === 1){
+    myObstacles.forEach( function ( element, index ) {
+        if ( airplane1.crashWith( element ) && lives === 1 ) {
             crashSound.play()
             stopGame()
-        } else if(airplane1.crashWith(element)){
-            console.log(`colidiu`)
-            myObstacles.splice(index, 1)
+        } else if ( airplane1.crashWith( element ) ) {
+            console.log( `colidiu` )
+            myObstacles.splice( index, 1 )
             lives--
         }
-    })
+    } )
 }
 
 class Obstacle {
@@ -214,30 +214,26 @@ class Obstacle {
     }
 
     drawObstacle() {
-        if(this.contadorObstacle == 36){
+        if ( this.contadorObstacle == 36 ) {
             this.contadorObstacle = 0
         }
-        if(this.contadorObstacle < 6 ){
+        if ( this.contadorObstacle < 6 ) {
             ctx.drawImage( obstacle, this.x, this.y, this.width, this.height )
             this.contadorObstacle++
-        } else if(contador < 12) {
-            ctx.drawImage( obstacle2, this.x, this.y, this.width, this.height)
+        } else if ( contador < 12 ) {
+            ctx.drawImage( obstacle2, this.x, this.y, this.width, this.height )
             this.contadorObstacle++
-        }
-        else if(this.contadorObstacle < 18) {
-            ctx.drawImage( obstacle3, this.x, this.y, this.width, this.height)
+        } else if ( this.contadorObstacle < 18 ) {
+            ctx.drawImage( obstacle3, this.x, this.y, this.width, this.height )
             this.contadorObstacle++
-        }
-        else if(this.contadorObstacle < 24) {
-            ctx.drawImage( obstacle4, this.x, this.y, this.width, this.height)
+        } else if ( this.contadorObstacle < 24 ) {
+            ctx.drawImage( obstacle4, this.x, this.y, this.width, this.height )
             this.contadorObstacle++
-        }
-        else if(this.contadorObstacle < 30) {
-            ctx.drawImage( obstacle5, this.x, this.y, this.width, this.height)
+        } else if ( this.contadorObstacle < 30 ) {
+            ctx.drawImage( obstacle5, this.x, this.y, this.width, this.height )
             this.contadorObstacle++
-        }
-        else if(this.contadorObstacle <= 35) {
-            ctx.drawImage( obstacle6, this.x, this.y, this.width, this.height)
+        } else if ( this.contadorObstacle <= 35 ) {
+            ctx.drawImage( obstacle6, this.x, this.y, this.width, this.height )
             this.contadorObstacle++
         }
     }
@@ -262,11 +258,23 @@ class Obstacle {
 
 function createObstacles() {
     frames += 1
-    if ( frames % 50 === 0 ) {
-        contadorObstacle = 0
-        console.log( `Objeto Criado` )
-        return myObstacles.push( new Obstacle( Math.floor( Math.random() * ( height - 50 ) ) ) )
+    if ( frames <= 700 ) {
+        if ( frames % 60 == 0 ) {
+            console.log( `Objeto Criado case 1` )
+            return myObstacles.push( new Obstacle( Math.floor( Math.random() * ( height - 50 ) ) ) )
+        }
+    } else if ( frames < 1400 ) {
+        if ( frames % 25 == 0 ) {
+            console.log( `Objeto Criado case 2` )
+            return myObstacles.push( new Obstacle( Math.floor( Math.random() * ( height - 50 ) ) ) )
+        }
+    } else if ( frames > 1400 ) {
+        if ( frames % 10 == 0 ) {
+            console.log( `Objeto Criado case 3` )
+            return myObstacles.push( new Obstacle( Math.floor( Math.random() * ( height - 50 ) ) ) )
+        }
     }
+    console.log(frames)
 }
 
 function moveObstacle() {
@@ -331,14 +339,14 @@ function updateCanvas() {
     // backgroundImage.draw();
     //airplane
     airplane1.newPos()
-    ctx.clearRect(0,0,900,938);
+    ctx.clearRect( 0, 0, 900, 938 );
     airplane1.drawHeart()
     airplane1.updatePlane()
 
     //object
     createObstacles()
     moveObstacle()
-    
+
 
     score()
 
@@ -346,4 +354,4 @@ function updateCanvas() {
     checkGameOver();
 }
 
-let airplane1 = new Airplane( 0, height/2, 100, 80 )
+let airplane1 = new Airplane( 0, height / 2, 100, 80 )
