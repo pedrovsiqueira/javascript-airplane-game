@@ -23,6 +23,12 @@ airplane.src = "./images/Plane/fly1.png"
 var airplane2 = new Image()
 airplane2.src = './images/Plane/fly2.png'
 
+var airplaneUp = new Image()
+airplaneUp.src = './images/Plane/up.png'
+
+var airplaneDown = new Image()
+airplaneDown.src = './images/Plane/down.png'
+
 //obstacle image
 var obstacle = new Image()
 obstacle.src = "./images/1.png"
@@ -58,20 +64,25 @@ gameOver.src = './images/gameover.png'
 var crashSound = new Audio()
 crashSound.src = './Sounds/crash.wav'
 
+var themeSound = new Audio()
+themeSound.src = './Sounds/theme.mp3'
+
+var finishSound = new Audio()
+finishSound.src = './Sounds/finish.mp3'
+
+var loseSound = new Audio()
+loseSound.src = './Sounds/lose.mp3'
+
 window.onload = function () {
     document.getElementById( "start-button" ).onclick = function () {
         if ( !gameStarted )
             startGame()
     };
-
-    document.getElementById( "restart-button" ).onclick = function () {
-        if ( gameStarted )
-            restartGame()
-    };
 }
 
 function startGame() {
     gameStarted = true
+    themeSound.play()
     requestAnimationFrame( updateCanvas )
 }
 
@@ -150,6 +161,14 @@ class Airplane {
         ctx.drawImage( airplaneDead, this.x, this.y, this.width, this.height )
     }
 
+    drawPlaneUp(){
+        ctx.drawImage(airplaneUp, this.x, this.y, this.width, this.height)
+    }
+
+    drawPlaneDown(){
+        ctx.drawImage(airplaneDown, this.x, this.y, this.width, this.height)
+    }
+
     drawHeart() {
         let xHeart = 5
         let yHeart = 5
@@ -165,6 +184,14 @@ class Airplane {
 
     updateDeadPlane() {
         this.drawDeadPlane()
+    }
+
+    updatePlaneUp() {
+        this.drawPlaneUp()
+    }
+
+    updatePlaneDown() {
+        this.drawPlaneDown()
     }
 
     left() {
@@ -194,12 +221,18 @@ function checkGameOver() {
 
     myObstacles.forEach( function ( element, index ) {
         if ( airplane1.crashWith( element ) && lives === 1 ) {
-            crashSound.play()
+            themeSound.pause()
+            loseSound.play()
             stopGame()
         } else if ( airplane1.crashWith( element ) ) {
-            console.log( `colidiu` )
+            // console.log( `colidiu` )
             myObstacles.splice( index, 1 )
             lives--
+            if(lives === 1){
+                themeSound.pause()
+                finishSound.play()
+                setTimeout( themeSound.play(), 1000)
+            }
         }
     } )
 }
