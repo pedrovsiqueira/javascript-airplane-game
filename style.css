@@ -16,7 +16,9 @@ body {
     margin: 0;
     width: 99vw;
     /* height: 100vh; */
-    background-image: url(./images/background.png) fixed center;
+    background-image: url(./images/background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     font-family: 'Rubik Mono One', sans-serif;
     overflow-x: hidden;
