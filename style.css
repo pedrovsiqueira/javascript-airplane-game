@@ -5,6 +5,8 @@
     padding: 0;
     border: none;
     box-sizing: border-box;
+    overflow-x: hidden;
+
 }
 
 body {
@@ -14,11 +16,10 @@ body {
     margin: 0;
     width: 99vw;
     /* height: 100vh; */
-    background-image: url(./images/background.png);
+    background-image: url(./images/background.png) fixed center;
     display: flex;
     font-family: 'Rubik Mono One', sans-serif;
     overflow-x: hidden;
-
 }
 
 body button {
@@ -63,7 +64,10 @@ ul {
     width: 30%;
 }
 
-
+canvas{
+    width: 50vw;
+    height: 100vh;
+}
 .container {
     width: 50vw;
     height: 100vh;
@@ -78,7 +82,7 @@ ul {
 .title {
     width: 50vw;
     height: 100vh;
-    padding: 50px 0px 50px 100px;
+    /* padding: 0px 0px 50px 100px; */
     /* border: 2px solid white; */
 }
 
