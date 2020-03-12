@@ -89,7 +89,7 @@ function stopGame() {
     score()
     airplane1.updateDeadPlane()
     ctx.drawImage(gameOver, 300, 60, 300, 300)
-    // setTimeout(restartGame, 4000)
+    setTimeout(restartGame, 4000)
 }
 
 function score(){
@@ -240,7 +240,6 @@ class Obstacle {
             ctx.drawImage( obstacle6, this.x, this.y, this.width, this.height)
             this.contadorObstacle++
         }
-        console.log(this.contadorObstacle)
     }
 
     updateObstacle() {
@@ -301,21 +300,21 @@ var backgroundImage = {
 document.onkeydown = function ( e ) {
     switch ( e.keyCode ) {
         case 38:
-            airplane1.speedY = -2
+            airplane1.speedY = -2.5
             console.log( 'up', airplane1 );
             break;
         case 40:
-            airplane1.speedY = 2
+            airplane1.speedY = 2.5
             console.log( airplane1.speedY )
             console.log( 'down', airplane1 );
             break;
         case 37:
             console.log( `Position X: ` + airplane1.x )
-            airplane1.speedX = -2
+            airplane1.speedX = -2.5
             console.log( 'left', airplane1 );
             break;
         case 39:
-            airplane1.speedX = 2
+            airplane1.speedX = 2.5
             console.log( 'right', airplane1 );
             break;
     }
