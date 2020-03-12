@@ -1,5 +1,3 @@
-
-
 * {
     margin: 0;
     padding: 0;
@@ -14,8 +12,8 @@ body {
     /* background: linear-gradient(to top, #00b2df 0%, #0060b8 100%); */
     color: #fff;
     margin: 0;
-    width: 99vw;
-    /* height: 100vh; */
+    width: 100vw;
+    height: 100vh;
     background-image: url(./images/background.png);
     background-size: cover;
     background-repeat: no-repeat;
