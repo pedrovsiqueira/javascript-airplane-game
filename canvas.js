@@ -8,7 +8,7 @@ let myObstacles = []
 let lives = 3;
 var points = 0
 var contador = 0
-var contadorObstacle = 0
+// var contadorObstacle = 0
 let gameStarted = false
 
 //load images
@@ -28,7 +28,19 @@ var obstacle = new Image()
 obstacle.src = "./images/1.png"
 
 var obstacle2 = new Image()
-obstacle2.src = './images/4.png'
+obstacle2.src = "./images/2.png"
+
+var obstacle3 = new Image()
+obstacle3.src = "./images/3.png"
+
+var obstacle4 = new Image()
+obstacle4.src = "./images/4.png"
+
+var obstacle5 = new Image()
+obstacle5.src = "./images/5.png"
+
+var obstacle6 = new Image()
+obstacle6.src = './images/6.png'
 
 var airplaneDead = new Image()
 airplaneDead.src = "./images/Plane/Dead (1).png"
@@ -72,14 +84,12 @@ function stopGame() {
     cancelAnimationFrame( id )
     // backgroundImage.draw();
     ctx.clearRect(0,0,900,938);
-
     createObstacles()
     moveObstacle()
     score()
-
     airplane1.updateDeadPlane()
     ctx.drawImage(gameOver, 300, 60, 300, 300)
-    setTimeout(restartGame, 4000)
+    // setTimeout(restartGame, 4000)
 }
 
 function score(){
@@ -200,19 +210,37 @@ class Obstacle {
         this.y = y
         this.width = 70
         this.height = 50
+        this.contadorObstacle = 0
     }
 
     drawObstacle() {
-        if(contadorObstacle == 51){
-            contadorObstacle = 0
+        if(this.contadorObstacle == 36){
+            this.contadorObstacle = 0
         }
-        if(contadorObstacle < 30 ){
+        if(this.contadorObstacle < 6 ){
             ctx.drawImage( obstacle, this.x, this.y, this.width, this.height )
-            contadorObstacle++
-        } else if(contador < 51) {
+            this.contadorObstacle++
+        } else if(contador < 12) {
             ctx.drawImage( obstacle2, this.x, this.y, this.width, this.height)
-            contadorObstacle++
+            this.contadorObstacle++
         }
+        else if(this.contadorObstacle < 18) {
+            ctx.drawImage( obstacle3, this.x, this.y, this.width, this.height)
+            this.contadorObstacle++
+        }
+        else if(this.contadorObstacle < 24) {
+            ctx.drawImage( obstacle4, this.x, this.y, this.width, this.height)
+            this.contadorObstacle++
+        }
+        else if(this.contadorObstacle < 30) {
+            ctx.drawImage( obstacle5, this.x, this.y, this.width, this.height)
+            this.contadorObstacle++
+        }
+        else if(this.contadorObstacle <= 35) {
+            ctx.drawImage( obstacle6, this.x, this.y, this.width, this.height)
+            this.contadorObstacle++
+        }
+        console.log(this.contadorObstacle)
     }
 
     updateObstacle() {
@@ -236,6 +264,7 @@ class Obstacle {
 function createObstacles() {
     frames += 1
     if ( frames % 50 === 0 ) {
+        contadorObstacle = 0
         console.log( `Objeto Criado` )
         return myObstacles.push( new Obstacle( Math.floor( Math.random() * ( height - 50 ) ) ) )
     }
