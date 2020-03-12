@@ -4,7 +4,6 @@
     border: none;
     box-sizing: border-box;
     overflow-x: hidden;
-
 }
 
 body {
@@ -19,7 +18,6 @@ body {
     background-repeat: no-repeat;
     display: flex;
     font-family: 'Rubik Mono One', sans-serif;
-    overflow-x: hidden;
 }
 
 body button {
