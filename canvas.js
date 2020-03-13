@@ -71,7 +71,7 @@ let finishSound = new Audio()
 finishSound.src = './Sounds/finish.mp3'
 
 let loseSound = new Audio()
-loseSound.src = './Sounds/lose.mp3'
+loseSound.src = './Sounds/fatality.mp3'
 
 window.onload = function () {
     document.getElementById( "start-button" ).onclick = function () {
