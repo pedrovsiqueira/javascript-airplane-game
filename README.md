@@ -1,6 +1,6 @@
 # Escape the Bees
 ## Installation
-Click the link <https://pedrovsiqueira.github.io/javascript-airplane-game/ or clone and download this project, open the index.html file in your browser and have Fun.
+Click the link https://pedrovsiqueira.github.io/javascript-airplane-game/ or clone and download this project, open the index.html file in your browser and have Fun.
 ## Usage example
 Instructions to play this game:
 * Use arrow keys to avoid bees;
