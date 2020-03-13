@@ -6,71 +6,71 @@ let id = null
 let frames = 0
 let myObstacles = []
 let lives = 3;
-var points = 0
-var contador = 0
-// var contadorObstacle = 0
+let points = 0
+let contador = 0
+// let contadorObstacle = 0
 let gameStarted = false
 
 //load images
 //background
-var img = new Image();
+let img = new Image();
 img.src = "./images/background.png";
 
 //airplane image
-var airplane = new Image()
+let airplane = new Image()
 airplane.src = "./images/Plane/fly1.png"
 
-var airplane2 = new Image()
+let airplane2 = new Image()
 airplane2.src = './images/Plane/fly2.png'
 
-var airplaneUp = new Image()
+let airplaneUp = new Image()
 airplaneUp.src = './images/Plane/up.png'
 
-var airplaneDown = new Image()
+let airplaneDown = new Image()
 airplaneDown.src = './images/Plane/down.png'
 
 //obstacle image
-var obstacle = new Image()
+let obstacle = new Image()
 obstacle.src = "./images/1.png"
 
-var obstacle2 = new Image()
+let obstacle2 = new Image()
 obstacle2.src = "./images/2.png"
 
-var obstacle3 = new Image()
+let obstacle3 = new Image()
 obstacle3.src = "./images/3.png"
 
-var obstacle4 = new Image()
+let obstacle4 = new Image()
 obstacle4.src = "./images/4.png"
 
-var obstacle5 = new Image()
+let obstacle5 = new Image()
 obstacle5.src = "./images/5.png"
 
-var obstacle6 = new Image()
+let obstacle6 = new Image()
 obstacle6.src = './images/6.png'
 
-var airplaneDead = new Image()
+let airplaneDead = new Image()
 airplaneDead.src = "./images/Plane/Dead (1).png"
 
-var heart = new Image()
+let heart = new Image()
 heart.src = './images/heart.png'
 
-var arrows = new Image()
+let arrows = new Image()
 arrows.src = './images/arrows.png'
 
-var gameOver = new Image()
+let gameOver = new Image()
 gameOver.src = './images/gameover.png'
 
 //load audio
-var crashSound = new Audio()
+let crashSound = new Audio()
 crashSound.src = './Sounds/crash.wav'
 
-var themeSound = new Audio()
+let themeSound = new Audio()
 themeSound.src = './Sounds/theme.mp3'
 
-var finishSound = new Audio()
+let finishSound = new Audio()
 finishSound.src = './Sounds/finish.mp3'
 
-var loseSound = new Audio()
+let loseSound = new Audio()
 loseSound.src = './Sounds/lose.mp3'
 
 window.onload = function () {
@@ -104,7 +104,7 @@ function stopGame() {
 }
 
 function score() {
-    var points = Math.floor( frames / 5 );
+    let points = Math.floor( frames / 5 );
     ctx.font = "32px arial";
     ctx.fillStyle = "white";
     ctx.fillText( "Score: " + points, width - 230, 32 );
@@ -317,7 +317,7 @@ function moveObstacle() {
     } )
 }
 
-var backgroundImage = {
+let backgroundImage = {
     img: img,
     x: 0,
     speed: -1,
